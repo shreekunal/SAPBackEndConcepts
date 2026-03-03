@@ -1,0 +1,23 @@
+{
+  "generationParameters": {
+    "generationDate": "Tue Mar 03 2026 15:40:41 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP On-Premise)",
+    "metadataFilename": "",
+    "serviceUrl": "https://058e1c82trial-dev-sample1books-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/catalog/",
+    "appName": "multiple_dest_in_one_ui5",
+    "appTitle": "Multiple Destination in One Ui5",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.145.0",
+    "enableEslint": false,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.20.4",
+    "template": "Basic V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```"
+  }
+}
