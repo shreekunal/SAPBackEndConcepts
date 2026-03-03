@@ -41,6 +41,76 @@ module.exports = class SalesService extends cds.ApplicationService {
       return order
     })
 
+    // Handle getOrderTotal action - calls HANA stored procedure
+    this.on('getOrderTotal', async (req) => {
+      const { ID } = req.data
+
+      const db = await cds.connect.to('db')
+      const result = await db.run(
+        `CALL GET_ORDER_TOTAL('${ID}', ?)`
+      )
+
+      // HANA TABLE OUT returns as result.ET_RESULT[0].TOTAL
+      const total = result?.ET_RESULT?.[0]?.TOTAL ?? 0.00
+      return parseFloat(total)
+    })
+
+    // Level 2: Get aggregated order stats for a customer
+    this.on('getCustomerSummary', async (req) => {
+      const { customerId } = req.data
+
+      const db = await cds.connect.to('db')
+      const result = await db.run(
+        `CALL GET_CUSTOMER_SUMMARY('${customerId}', ?)`
+      )
+
+      const row = result?.ET_RESULT?.[0]
+      return {
+        customerName: row?.CUSTOMER_NAME ?? null,
+        totalOrders: parseInt(row?.TOTAL_ORDERS ?? 0),
+        totalSpent: parseFloat(row?.TOTAL_SPENT ?? 0),
+        avgOrderValue: parseFloat(row?.AVG_ORDER_VALUE ?? 0),
+        lastOrderDate: row?.LAST_ORDER_DATE ?? null
+      }
+    })
+
+    // Level 3: Update order status with business rule validation
+    this.on('updateOrderStatus', async (req) => {
+      const { orderID, newStatus } = req.data
+
+      const db = await cds.connect.to('db')
+      const result = await db.run(
+        `CALL UPDATE_ORDER_STATUS('${orderID}', '${newStatus}', ?)`
+      )
+
+      const row = result?.ET_RESULT?.[0]
+      return {
+        success: row?.SUCCESS ?? 'false',
+        message: row?.MESSAGE ?? 'Unknown error',
+        oldStatus: row?.OLD_STATUS ?? null,
+        newStatus: row?.NEW_STATUS ?? null
+      }
+    })
+
+    // Level 4: Get top N products ranked by total revenue
+    this.on('getTopProducts', async (req) => {
+      const { topN } = req.data
+
+      const db = await cds.connect.to('db')
+      const result = await db.run(
+        `CALL GET_TOP_PRODUCTS(${topN}, ?)`
+      )
+
+      return (result?.ET_RESULT ?? []).map(row => ({
+        rank: parseInt(row.RANK),
+        productName: row.PRODUCT_NAME,
+        totalQty: parseInt(row.TOTAL_QTY),
+        totalRevenue: parseFloat(row.TOTAL_REVENUE),
+        orderCount: parseInt(row.ORDER_COUNT),
+        avgPrice: parseFloat(row.AVG_PRICE)
+      }))
+    })
+
     return super.init()
   }
 }

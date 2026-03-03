@@ -1,0 +1,54 @@
+PROCEDURE GET_TOP_PRODUCTS(
+    IN  IV_TOP_N     INTEGER,
+    OUT ET_RESULT    TABLE (
+        RANK          INTEGER,
+        PRODUCT_NAME  NVARCHAR(100),
+        TOTAL_QTY     INTEGER,
+        TOTAL_REVENUE DECIMAL(15, 2),
+        ORDER_COUNT   INTEGER,
+        AVG_PRICE     DECIMAL(15, 2)
+    )
+)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER
+READS SQL DATA
+AS
+BEGIN
+    -- Step 1: Aggregate per product
+    LT_AGGREGATED =
+        SELECT
+            SOI.PRODUCTNAME                   AS PRODUCT_NAME,
+            SUM(SOI.QUANTITY)                 AS TOTAL_QTY,
+            SUM(SOI.QUANTITY * SOI.PRICE)     AS TOTAL_REVENUE,
+            COUNT(DISTINCT SOI.PARENT_ID)     AS ORDER_COUNT,
+            AVG(SOI.PRICE)                    AS AVG_PRICE
+        FROM SALES_SALESORDERITEMS SOI
+        INNER JOIN SALES_SALESORDERS SO
+            ON SO.ID = SOI.PARENT_ID
+        WHERE SO.STATUS != 'CANCELLED'
+        GROUP BY SOI.PRODUCTNAME;
+
+    -- Step 2: Rank by total revenue using window function
+    LT_RANKED =
+        SELECT
+            RANK() OVER (ORDER BY TOTAL_REVENUE DESC) AS RANK,
+            PRODUCT_NAME,
+            TOTAL_QTY,
+            TOTAL_REVENUE,
+            ORDER_COUNT,
+            AVG_PRICE
+        FROM :LT_AGGREGATED;
+
+    -- Step 3: Return only top N
+    ET_RESULT =
+        SELECT
+            RANK,
+            PRODUCT_NAME,
+            TOTAL_QTY,
+            TOTAL_REVENUE,
+            ORDER_COUNT,
+            ROUND(AVG_PRICE, 2) AS AVG_PRICE
+        FROM :LT_RANKED
+        WHERE RANK <= IV_TOP_N
+        ORDER BY RANK ASC;
+END

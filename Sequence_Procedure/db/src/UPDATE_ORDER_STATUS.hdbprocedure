@@ -1,0 +1,60 @@
+PROCEDURE UPDATE_ORDER_STATUS(
+    IN  IV_ORDER_ID  NVARCHAR(36),
+    IN  IV_NEW_STATUS NVARCHAR(20),
+    OUT ET_RESULT    TABLE (
+        SUCCESS      NVARCHAR(5),
+        MESSAGE      NVARCHAR(200),
+        OLD_STATUS   NVARCHAR(20),
+        NEW_STATUS   NVARCHAR(20)
+    )
+)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER
+AS
+BEGIN
+    DECLARE lv_current_status NVARCHAR(20);
+    DECLARE lv_message        NVARCHAR(200);
+    DECLARE lv_success        NVARCHAR(5);
+    DECLARE lt_temp           TABLE (
+        SUCCESS    NVARCHAR(5),
+        MESSAGE    NVARCHAR(200),
+        OLD_STATUS NVARCHAR(20),
+        NEW_STATUS NVARCHAR(20)
+    );
+
+    -- Get current status
+    SELECT STATUS INTO lv_current_status
+    FROM SALES_SALESORDERS
+    WHERE ID = IV_ORDER_ID;
+
+    -- Business rule validation
+    IF lv_current_status = 'CANCELLED' THEN
+        lv_success := 'false';
+        lv_message := 'Cannot change status of a CANCELLED order';
+
+    ELSEIF lv_current_status = 'COMPLETED' THEN
+        lv_success := 'false';
+        lv_message := 'Cannot change status of a COMPLETED order';
+
+    ELSEIF lv_current_status = 'NEW' AND IV_NEW_STATUS NOT IN ('PROCESSING', 'CANCELLED') THEN
+        lv_success := 'false';
+        lv_message := 'NEW order can only move to PROCESSING or CANCELLED';
+
+    ELSEIF lv_current_status = 'PROCESSING' AND IV_NEW_STATUS NOT IN ('COMPLETED', 'CANCELLED') THEN
+        lv_success := 'false';
+        lv_message := 'PROCESSING order can only move to COMPLETED or CANCELLED';
+
+    ELSE
+        -- Valid transition: update the status
+        UPDATE SALES_SALESORDERS
+        SET STATUS = IV_NEW_STATUS
+        WHERE ID = IV_ORDER_ID;
+
+        lv_success := 'true';
+        lv_message := 'Status updated successfully from ' || lv_current_status || ' to ' || IV_NEW_STATUS;
+    END IF;
+
+    -- Build result using local table variable (avoids DUMMY dependency in HDI)
+    INSERT INTO :lt_temp VALUES (:lv_success, :lv_message, :lv_current_status, IV_NEW_STATUS);
+    ET_RESULT = SELECT * FROM :lt_temp;
+END

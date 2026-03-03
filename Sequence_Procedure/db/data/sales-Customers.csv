@@ -1,1 +1,6 @@
 ID,name,email,phone,city,createdAt,createdBy,modifiedAt,modifiedBy
+a1b2c3d4-0001-0001-0001-000000000001,Alice Johnson,alice@example.com,+1-555-0101,New York,2026-01-01T00:00:00Z,admin,2026-01-01T00:00:00Z,admin
+a1b2c3d4-0002-0002-0002-000000000002,Bob Smith,bob@example.com,+1-555-0202,London,2026-01-02T00:00:00Z,admin,2026-01-02T00:00:00Z,admin
+a1b2c3d4-0003-0003-0003-000000000003,Carol White,carol@example.com,+1-555-0303,Berlin,2026-01-03T00:00:00Z,admin,2026-01-03T00:00:00Z,admin
+a1b2c3d4-0004-0004-0004-000000000004,David Brown,david@example.com,+1-555-0404,Paris,2026-01-04T00:00:00Z,admin,2026-01-04T00:00:00Z,admin
+a1b2c3d4-0005-0005-0005-000000000005,Eva Martinez,eva@example.com,+1-555-0505,Tokyo,2026-01-05T00:00:00Z,admin,2026-01-05T00:00:00Z,admin
