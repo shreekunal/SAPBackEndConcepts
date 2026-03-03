@@ -1,6 +1,36 @@
 <mvc:View controllerName="multipledestinoneui5.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    <Page id="page" title="Books">
+        <content>
+            <Table id="booksTable"
+                items="{path: '/Books'}">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Books List" />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="ID" />
+                    </Column>
+                    <Column>
+                        <Text text="Title" />
+                    </Column>
+                    <Column>
+                        <Text text="Author" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{ID}" />
+                            <Text text="{title}" />
+                            <Text text="{author}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
     </Page>
 </mvc:View>
