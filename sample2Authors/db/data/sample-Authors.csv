@@ -1,0 +1,4 @@
+ID,name,birthYear,country,createdAt,createdBy,modifiedAt,modifiedBy
+f1a2b3c4-0001-0001-0001-000000000001,George Orwell,1903,United Kingdom,2026-01-01T00:00:00Z,admin,2026-01-01T00:00:00Z,admin
+f1a2b3c4-0002-0002-0002-000000000002,J.K. Rowling,1965,United Kingdom,2026-01-01T00:00:00Z,admin,2026-01-01T00:00:00Z,admin
+f1a2b3c4-0003-0003-0003-000000000003,Gabriel Garcia Marquez,1927,Colombia,2026-01-01T00:00:00Z,admin,2026-01-01T00:00:00Z,admin
