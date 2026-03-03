@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog title="{authorDialog>/title}">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <Input placeholder="Name"        value="{authorDialog>/name}" />
+                <Input placeholder="Birth Year"  value="{authorDialog>/birthYear}" type="Number" />
+                <Input placeholder="Country"     value="{authorDialog>/country}" />
+            </VBox>
+        </content>
+        <beginButton>
+            <Button text="Save" type="Emphasized" press="onSaveAuthor" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press="onCancelAuthor" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,25 +1,26 @@
 <mvc:View controllerName="multipledestinoneui5.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
     <Page id="page" title="Books &amp; Authors">
         <content>
-            <Table id="booksTable"
+
+            <!-- ===== BOOKS TABLE ===== -->
+            <Table id="booksTable" mode="SingleSelectMaster"
                 items="{path: '/Books'}">
                 <headerToolbar>
                     <OverflowToolbar>
                         <Title text="Books List" />
+                        <ToolbarSpacer />
+                        <Button text="Add" icon="sap-icon://add" press="onAddBook" />
+                        <Button text="Edit" icon="sap-icon://edit" press="onEditBook" />
+                        <Button text="Delete" icon="sap-icon://delete" type="Reject" press="onDeleteBook" />
                     </OverflowToolbar>
                 </headerToolbar>
                 <columns>
-                    <Column>
-                        <Text text="ID" />
-                    </Column>
-                    <Column>
-                        <Text text="Title" />
-                    </Column>
-                    <Column>
-                        <Text text="Author" />
-                    </Column>
+                    <Column><Text text="ID" /></Column>
+                    <Column><Text text="Title" /></Column>
+                    <Column><Text text="Author" /></Column>
                 </columns>
                 <items>
                     <ColumnListItem>
@@ -32,23 +33,22 @@
                 </items>
             </Table>
 
-            <Table id="authorsTable"
+            <!-- ===== AUTHORS TABLE ===== -->
+            <Table id="authorsTable" mode="SingleSelectMaster"
                 items="{model: 'AUTHORS', path: '/Authors'}">
                 <headerToolbar>
                     <OverflowToolbar>
                         <Title text="Authors List" />
+                        <ToolbarSpacer />
+                        <Button text="Add" icon="sap-icon://add" press="onAddAuthor" />
+                        <Button text="Edit" icon="sap-icon://edit" press="onEditAuthor" />
+                        <Button text="Delete" icon="sap-icon://delete" type="Reject" press="onDeleteAuthor" />
                     </OverflowToolbar>
                 </headerToolbar>
                 <columns>
-                    <Column>
-                        <Text text="Name" />
-                    </Column>
-                    <Column>
-                        <Text text="Birth Year" />
-                    </Column>
-                    <Column>
-                        <Text text="Country" />
-                    </Column>
+                    <Column><Text text="Name" /></Column>
+                    <Column><Text text="Birth Year" /></Column>
+                    <Column><Text text="Country" /></Column>
                 </columns>
                 <items>
                     <ColumnListItem>
@@ -60,6 +60,8 @@
                     </ColumnListItem>
                 </items>
             </Table>
+
         </content>
     </Page>
+
 </mvc:View>
