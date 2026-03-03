@@ -4,9 +4,9 @@
     <Dialog title="{authorDialog>/title}">
         <content>
             <VBox class="sapUiSmallMargin">
-                <Input placeholder="Name"        value="{authorDialog>/name}" />
-                <Input placeholder="Birth Year"  value="{authorDialog>/birthYear}" type="Number" />
-                <Input placeholder="Country"     value="{authorDialog>/country}" />
+                <Input placeholder="Name" value="{authorDialog>/name}" />
+                <Input placeholder="Birth Year" value="{authorDialog>/birthYear}" type="Number" />
+                <Input placeholder="Country" value="{authorDialog>/country}" />
             </VBox>
         </content>
         <beginButton>

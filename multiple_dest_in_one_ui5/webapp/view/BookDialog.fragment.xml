@@ -4,9 +4,9 @@
     <Dialog title="{bookDialog>/title}">
         <content>
             <VBox class="sapUiSmallMargin">
-                <Input placeholder="ID (integer)"  value="{bookDialog>/ID}" />
-                <Input placeholder="Title"         value="{bookDialog>/bookTitle}" />
-                <Input placeholder="Author"        value="{bookDialog>/author}" />
+                <Input placeholder="ID (integer)" value="{bookDialog>/ID}" />
+                <Input placeholder="Title" value="{bookDialog>/bookTitle}" />
+                <Input placeholder="Author" value="{bookDialog>/author}" />
             </VBox>
         </content>
         <beginButton>

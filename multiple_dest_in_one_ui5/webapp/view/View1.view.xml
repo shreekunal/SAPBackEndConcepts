@@ -14,13 +14,20 @@
                         <ToolbarSpacer />
                         <Button text="Add" icon="sap-icon://add" press="onAddBook" />
                         <Button text="Edit" icon="sap-icon://edit" press="onEditBook" />
-                        <Button text="Delete" icon="sap-icon://delete" type="Reject" press="onDeleteBook" />
+                        <Button text="Delete" icon="sap-icon://delete" type="Reject"
+                            press="onDeleteBook" />
                     </OverflowToolbar>
                 </headerToolbar>
                 <columns>
-                    <Column><Text text="ID" /></Column>
-                    <Column><Text text="Title" /></Column>
-                    <Column><Text text="Author" /></Column>
+                    <Column>
+                        <Text text="ID" />
+                    </Column>
+                    <Column>
+                        <Text text="Title" />
+                    </Column>
+                    <Column>
+                        <Text text="Author" />
+                    </Column>
                 </columns>
                 <items>
                     <ColumnListItem>
@@ -42,13 +49,20 @@
                         <ToolbarSpacer />
                         <Button text="Add" icon="sap-icon://add" press="onAddAuthor" />
                         <Button text="Edit" icon="sap-icon://edit" press="onEditAuthor" />
-                        <Button text="Delete" icon="sap-icon://delete" type="Reject" press="onDeleteAuthor" />
+                        <Button text="Delete" icon="sap-icon://delete" type="Reject"
+                            press="onDeleteAuthor" />
                     </OverflowToolbar>
                 </headerToolbar>
                 <columns>
-                    <Column><Text text="Name" /></Column>
-                    <Column><Text text="Birth Year" /></Column>
-                    <Column><Text text="Country" /></Column>
+                    <Column>
+                        <Text text="Name" />
+                    </Column>
+                    <Column>
+                        <Text text="Birth Year" />
+                    </Column>
+                    <Column>
+                        <Text text="Country" />
+                    </Column>
                 </columns>
                 <items>
                     <ColumnListItem>
