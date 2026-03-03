@@ -1,7 +1,7 @@
 <mvc:View controllerName="multipledestinoneui5.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-    <Page id="page" title="Books">
+    <Page id="page" title="Books &amp; Authors">
         <content>
             <Table id="booksTable"
                 items="{path: '/Books'}">
@@ -27,6 +27,35 @@
                             <Text text="{ID}" />
                             <Text text="{title}" />
                             <Text text="{author}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            <Table id="authorsTable"
+                items="{model: 'AUTHORS', path: '/Authors'}">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Authors List" />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="Name" />
+                    </Column>
+                    <Column>
+                        <Text text="Birth Year" />
+                    </Column>
+                    <Column>
+                        <Text text="Country" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{AUTHORS>name}" />
+                            <Text text="{AUTHORS>birthYear}" />
+                            <Text text="{AUTHORS>country}" />
                         </cells>
                     </ColumnListItem>
                 </items>
