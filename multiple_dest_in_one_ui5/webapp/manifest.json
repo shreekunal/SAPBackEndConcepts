@@ -24,6 +24,11 @@
           "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "4.01"
         }
+      },
+      "SecondaryService": {
+        "uri": "/odata/v4/authors/",
+        "type": "OData",
+        "settings": { "odataVersion": "4.0" }
       }
     },
     "crossNavigation": {
@@ -84,6 +89,10 @@
           "autoExpandSelect": true,
           "earlyRequests": true
         }
+      },
+      "AUTHORS": {
+        "dataSource": "SecondaryService",
+        "settings": {}
       }
     },
     "resources": {
@@ -109,9 +118,7 @@
         {
           "name": "RouteView1",
           "pattern": ":?query:",
-          "target": [
-            "TargetView1"
-          ]
+          "target": ["TargetView1"]
         }
       ],
       "targets": {

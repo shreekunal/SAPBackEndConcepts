@@ -30,7 +30,10 @@ server:
       configuration:
         ignoreCertErrors: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
         backend:
-          - path: /odata
+          - path: /odata/v4/authors
+            url: https://058e1c82trial-dev-sample2authors-srv.cfapps.us10-001.hana.ondemand.com
+            destination: sample2Authors
+          - path: /odata/v4/catalog
             url: https://058e1c82trial-dev-sample1books-srv.cfapps.us10-001.hana.ondemand.com
             destination: sample1Books
     - name: sap-fe-mockserver
