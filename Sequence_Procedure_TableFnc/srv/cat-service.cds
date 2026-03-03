@@ -44,4 +44,14 @@ service SalesService {
         orderCount   : Integer;
         avgPrice     : Decimal(15, 2);
     };
+
+    // Table Function - get orders filtered by status
+    function getOrdersByStatus(status: String(20)) returns array of {
+        orderId      : UUID;
+        orderNo      : String(20);
+        orderDate    : Date;
+        status       : String(20);
+        totalAmount  : Decimal(15, 2);
+        customerName : String(100);
+    };
 }

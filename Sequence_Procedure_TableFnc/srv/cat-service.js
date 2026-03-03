@@ -111,6 +111,26 @@ module.exports = class SalesService extends cds.ApplicationService {
       }))
     })
 
+    // Table Function: get orders filtered by status
+    // Called with SELECT * FROM FUNCTION (unlike CALL for procedures)
+    this.on('getOrdersByStatus', async (req) => {
+      const { status } = req.data
+
+      const db = await cds.connect.to('db')
+      const result = await db.run(
+        `SELECT * FROM GET_ORDERS_BY_STATUS('${status}')`
+      )
+
+      return result.map(row => ({
+        orderId     : row.ORDER_ID,
+        orderNo     : row.ORDER_NO,
+        orderDate   : row.ORDER_DATE,
+        status      : row.STATUS,
+        totalAmount : parseFloat(row.TOTAL_AMOUNT),
+        customerName: row.CUSTOMER_NAME
+      }))
+    })
+
     return super.init()
   }
 }
