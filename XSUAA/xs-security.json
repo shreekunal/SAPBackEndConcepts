@@ -1,0 +1,54 @@
+{
+  "xsappname": "XSUAA",
+  "tenant-mode": "shared",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Display",
+      "description": "Display access to UI"
+    },
+    {
+      "name": "$XSAPPNAME.Create",
+      "description": "Create data"
+    },
+    {
+      "name": "$XSAPPNAME.Read",
+      "description": "Read data"
+    },
+    {
+      "name": "$XSAPPNAME.Update",
+      "description": "Update data"
+    },
+    {
+      "name": "$XSAPPNAME.Delete",
+      "description": "Delete data"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Viewer",
+      "description": "Read only access",
+      "scope-references": ["$XSAPPNAME.Display", "$XSAPPNAME.Read"]
+    },
+    {
+      "name": "Editor",
+      "description": "Can create and update",
+      "scope-references": [
+        "$XSAPPNAME.Display",
+        "$XSAPPNAME.Read",
+        "$XSAPPNAME.Create",
+        "$XSAPPNAME.Update"
+      ]
+    },
+    {
+      "name": "Admin",
+      "description": "Full access",
+      "scope-references": [
+        "$XSAPPNAME.Display",
+        "$XSAPPNAME.Read",
+        "$XSAPPNAME.Create",
+        "$XSAPPNAME.Update",
+        "$XSAPPNAME.Delete"
+      ]
+    }
+  ]
+}
