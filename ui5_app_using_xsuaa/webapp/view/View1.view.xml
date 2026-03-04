@@ -2,5 +2,32 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
+        <content>
+            <VBox class="sapUiMediumMargin" width="100%">
+
+                <!-- ═══════════════════════════════════════ -->
+                <!--           SECURITY SCOPES SECTION      -->
+                <!-- ═══════════════════════════════════════ -->
+                <Panel headerText="Security Scopes" expandable="true" expanded="true"
+                    class="sapUiSmallMarginBottom">
+                    <content>
+                        <VBox class="sapUiSmallMargin">
+                            <Text
+                                text="Check which scopes are assigned to the current user."
+                                class="sapUiTinyMarginBottom"
+                            />
+                            <Button
+                                text="Check My Scopes"
+                                type="Emphasized"
+                                press="onCheckSecurity"
+                                icon="sap-icon://locked"
+                            />
+                            <Text id="securityResult" text="" class="sapUiTinyMarginTop" />
+                        </VBox>
+                    </content>
+                </Panel>
+
+            </VBox>
+        </content>
     </Page>
 </mvc:View>

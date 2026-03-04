@@ -21,6 +21,7 @@ modules:
       builder: npm-ci
     provides:
       - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        public: true
         properties:
           srv-url: ${default-url}
     requires:

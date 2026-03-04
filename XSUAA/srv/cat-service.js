@@ -20,8 +20,10 @@ module.exports = class CatalogService extends cds.ApplicationService {
         Update: req.user.is('Update'),
         Display: req.user.is('Display'),
       }
+      console.log('====== Security Action ======')
       console.log('User:', JSON.stringify(req.user))
       console.log('Scopes:', JSON.stringify(scopes))
+      console.log('=============================')
       return JSON.stringify(scopes)
     })
 
