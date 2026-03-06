@@ -3,20 +3,20 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
         <content>
-            <VBox class="sapUiMediumMargin" width="100%">
+            <VBox id="_IDGenVBox" class="sapUiMediumMargin" width="100%">
 
                 <!-- ═══════════════════════════════════════ -->
                 <!--           SECURITY SCOPES SECTION      -->
                 <!-- ═══════════════════════════════════════ -->
-                <Panel headerText="Security Scopes" expandable="true" expanded="true"
+                <Panel id="_IDGenPanel1" headerText="Security Scopes" expandable="true" expanded="true"
                     class="sapUiSmallMarginBottom">
                     <content>
-                        <VBox class="sapUiSmallMargin">
-                            <Text
+                        <VBox id="_IDGenVBox1" class="sapUiSmallMargin">
+                            <Text id="_IDGenText"
                                 text="Check which scopes are assigned to the current user."
                                 class="sapUiTinyMarginBottom"
                             />
-                            <Button
+                            <Button id="_IDGenButton"
                                 text="Check My Scopes"
                                 type="Emphasized"
                                 press="onCheckSecurity"

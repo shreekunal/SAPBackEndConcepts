@@ -26,6 +26,7 @@ modules:
     requires:
       - name: triggerWorkflow-db
       - name: triggerWorkflow-auth
+      - name: triggerWorkflow-destination
 
   - name: triggerWorkflow-db-deployer
     type: hdb
@@ -54,3 +55,8 @@ resources:
           credential-types:
             - "binding-secret"
             - "x509"
+  - name: triggerWorkflow-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite

@@ -1,6 +1,31 @@
 <mvc:View controllerName="ui5triggerbpa.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout">
     <Page id="page" title="{i18n>title}">
+        <content>
+            <VBox id="bpaBox" class="sapUiSmallMargin">
+                <Title id="bpaTitle" text="Trigger BPA Workflow" level="H2" />
+
+                <Label id="lblOrderId" text="Order ID" class="sapUiSmallMarginTop" />
+                <Input id="orderIdInput" placeholder="e.g. 1004" width="300px" />
+
+                <Label id="lblOrderNo" text="Order No" class="sapUiSmallMarginTop" />
+                <Input id="orderNoInput" placeholder="e.g. OD-1001" width="300px" />
+
+                <Label id="lblAmount" text="Amount" class="sapUiSmallMarginTop" />
+                <Input id="amountInput" placeholder="e.g. 1500" width="300px" type="Number" />
+
+                <Label id="lblCurrency" text="Currency" class="sapUiSmallMarginTop" />
+                <Input id="currencyInput" placeholder="e.g. USD" value="USD" width="300px" />
+
+                <HBox id="bpaButtonBox" class="sapUiSmallMarginTop">
+                    <Button id="btnTriggerBPA" text="Trigger Workflow" type="Emphasized"
+                        icon="sap-icon://initiative" press=".onTriggerBPA" />
+                </HBox>
+
+                <Text id="bpaResultText" text="" class="sapUiSmallMarginTop" />
+            </VBox>
+        </content>
     </Page>
 </mvc:View>
