@@ -24,12 +24,18 @@ sap.ui.define([
                 return;
             }
 
+            var iOrderId = parseInt(sOrderId, 10);
+            if (isNaN(iOrderId)) {
+                MessageToast.show("Please enter a valid numeric Order ID");
+                return;
+            }
+
             oResultText.setText("Triggering workflow...");
 
             var oActionBinding = oModel.bindContext("/triggerWorkflow(...)");
-            oActionBinding.setParameter("orderId", sOrderId);
+            oActionBinding.setParameter("orderId", iOrderId);
             oActionBinding.setParameter("orderNo", sOrderNo);
-            oActionBinding.setParameter("amount", parseFloat(sAmount) || 0);
+            oActionBinding.setParameter("amount", parseInt(sAmount, 10) || 0);
             oActionBinding.setParameter("currency", sCurrency || "USD");
 
             oActionBinding.execute()

@@ -20,9 +20,9 @@
                 <ActionImport Name="triggerWorkflow" Action="CatalogService.triggerWorkflow"/>
             </EntityContainer>
             <Action Name="triggerWorkflow" IsBound="false">
-                <Parameter Name="orderId" Type="Edm.String"/>
+                <Parameter Name="orderId" Type="Edm.Int32"/>
                 <Parameter Name="orderNo" Type="Edm.String"/>
-                <Parameter Name="amount" Type="Edm.Decimal" Scale="variable"/>
+                <Parameter Name="amount" Type="Edm.Int32"/>
                 <Parameter Name="currency" Type="Edm.String"/>
                 <ReturnType Type="Edm.String"/>
             </Action>

@@ -17,7 +17,7 @@ server:
           url: https://ui5.sap.com
         backend:
           - path: /odata
-            url: https://058e1c82trial-dev-triggerworkflow-srv.cfapps.us10-001.hana.ondemand.com
+            url: https://f0a22d8ftrial-dev-triggerworkflow-srv.cfapps.us10-001.hana.ondemand.com
             destination: triggerWorkflow
     - name: fiori-tools-appreload
       afterMiddleware: compression

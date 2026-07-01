@@ -4,7 +4,7 @@
     "generatorPlatform": "SAP Business Application Studio",
     "serviceType": "SAP System (ABAP On-Premise)",
     "metadataFilename": "",
-    "serviceUrl": "https://058e1c82trial-dev-triggerworkflow-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/catalog/",
+    "serviceUrl": "https://f0a22d8ftrial-dev-triggerworkflow-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/catalog/",
     "appName": "ui5_trigger_bpa",
     "appTitle": "Trigger Workflow",
     "appDescription": "An SAP Fiori application.",

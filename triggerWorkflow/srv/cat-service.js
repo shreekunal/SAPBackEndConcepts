@@ -10,7 +10,7 @@ module.exports = class CatalogService extends cds.ApplicationService {
     this.on('triggerWorkflow', async (req) => {
       const { orderId, orderNo, amount, currency } = req.data
 
-      if (!orderId) {
+      if (!orderId && orderId !== 0) {
         return req.error(400, 'orderId is required')
       }
 
@@ -19,9 +19,9 @@ module.exports = class CatalogService extends cds.ApplicationService {
       const db = await cds.connect.to('db')
       await db.run(
         UPSERT.into(Orders).entries({
-          ID: parseInt(orderId),
+          ID: orderId,
           OrderNo: orderNo || '',
-          Amount: parseFloat(amount) || 0,
+          Amount: amount || 0,
           Currency: currency || 'USD',
           Status: 'PENDING'
         })
@@ -29,13 +29,13 @@ module.exports = class CatalogService extends cds.ApplicationService {
       console.log(`Order ${orderId} saved to DB with status PENDING`)
 
       const oPayload = {
-        definitionId: 'us10.058e1c82trial.salesordersmanagement.orderProcessing',
+        definitionId: 'us10.f0a22d8ftrial.orderapprovalworkflow.orderProcessing',
         context: {
-          id: parseInt(orderId) || 0,
+          id: orderId,
           orderno: orderNo || '',
-          amount: parseFloat(amount) || 0,
+          amount: amount || 0,
           currency: currency || '',
-          status: 'Initiated'
+          status: ''
         }
       }
 
